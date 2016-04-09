@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from events.models import Event
-from main.models import ContactForm, EBoard
+from main.models import ContactForm, EBoard, BackgroundImage
 
 
 def index(request):
@@ -15,7 +15,8 @@ def index(request):
     if len(events) < 4:
         events = Event.objects.order_by('-date').all()[:4]
     eboard = EBoard.objects.filter(id=len(EBoard.objects.all())).first()
-    return render(request, 'index.html', {'home': True, 'eboard': eboard, 'events': events})
+    background = BackgroundImage.objects.all()[0]
+    return render(request, 'index.html', {'home': True, 'eboard': eboard, 'events': events, 'background': background})
 
 
 def contact(request):

@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from main.models import EBoard, ContactForm
+from main.models import EBoard, ContactForm, BackgroundImage
+
+admin.site.register(BackgroundImage)
 
 
 class EboardAdmin(admin.ModelAdmin):

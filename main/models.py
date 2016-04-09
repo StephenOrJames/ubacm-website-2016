@@ -2,6 +2,12 @@ from django.db.models import Model, CharField, TextField, DateField, ImageField
 import datetime
 
 
+class BackgroundImage(Model):
+    image = ImageField(upload_to="homepage/background/")
+
+    class Meta:
+        db_table = 'backgroundImages'
+
 class EBoard(Model):
     year = CharField(default="2016-2017", max_length=9)
 
