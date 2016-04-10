@@ -1,10 +1,14 @@
 import datetime
 
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
+from contacts.models import Profile
 from events.models import Event
+from lib import random_generator
+from lib.ubitscrap import get_name
 from main.models import ContactForm, EBoard, BackgroundImage
 
 
@@ -17,6 +21,30 @@ def index(request):
     eboard = EBoard.objects.filter(id=len(EBoard.objects.all())).first()
     background = BackgroundImage.objects.all()[0]
     return render(request, 'index.html', {'home': True, 'eboard': eboard, 'events': events, 'background': background})
+
+
+def add_user(request):
+    email = request.POST.get('email', '')
+    if not '@buffalo.edu' in email:
+        messages.error(request, "Must be a UB email")
+        return redirect('index')
+    if len(email) < 8:
+        messages.error(request, "Email is too short")
+    if User.objects.filter(email=email).first():
+        messages.error(request, "That email is already used")
+        return redirect('index')
+    ubit = str(email).split('@')[0]
+    name_list = get_name(ubit)
+    if None in name_list:
+        messages.error(request, "That name was not found")
+        return redirect('index')
+    user = User.objects.create_user(ubit, email, random_generator(), first_name=name_list[0],
+                                    last_name=name_list[1])
+    user.save()
+    profile = Profile.objects.create(attended=0, user=user, phone_number="")
+    profile.save()
+    messages.success(request, "Successfully added you to the list!")
+    return redirect('index')
 
 
 def contact(request):

@@ -3,7 +3,7 @@ from django.db.models import Model, CharField, IntegerField, ForeignKey, CASCADE
 
 
 class Profile(Model):
-    user = OneToOneField(User, on_delete=CASCADE, related_name="profile")
+    user = OneToOneField(User, on_delete=CASCADE, related_name="profile", null=True)
     phone_number = CharField(max_length=12, default="", help_text="")
     attended = IntegerField(default=0)
 

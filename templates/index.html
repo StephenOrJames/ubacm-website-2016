@@ -9,27 +9,34 @@
                 <div class="mbr-box mbr-box--stretched">
                     <div class="mbr-box__magnet mbr-box__magnet--center-left">
                         <div class="row">
-                            <div class=" col-sm-6">
+                            <div class=" col-sm-8">
                                 <div class="mbr-hero animated fadeInUp">
+                                    <br/>
                                     <h1 class="mbr-hero__text">Association for Computing Machinery Buffalo Chapter</h1>
                                     <p class="mbr-hero__subtext">Our mission is to foster a student community around
                                         computer science and software engineering at the University at Buffalo through
                                         tech
                                         talks, hackathons, and social events.<br></p>
                                 </div>
-                                <div class="mbr-buttons btn-inverse mbr-buttons--left"><a
-                                        class="mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning"
+                                <div class="mbr-buttons btn-inverse mbr-buttons--left">
+                                    <a class="mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning"
                                         href="#features1-77">EVENTS</a>
                                     <a class="mbr-buttons__btn btn btn-lg btn-default animated fadeInUp delay"
-                                       href="{% url 'blog:index' %}">RESOURCES</a></div>
+                                       href="{% url 'blog:index' %}">RESOURCES</a>
+                                    <hr style="width: 60%">
+                                    <form action="{% url 'add_user' %}" method="post">
+                                        {% csrf_token %}
+                                    <button class="pull-right mbr-buttons__btn btn btn-lg btn-default animated fadeInUp delay"
+                                       type="submit">SIGNUP FOR NEWSLETTER</button>
+                                    <input type="email" class="form-control" name="email"
+                                           style="width: 40%; border-radius: 10px;
+                                           background-color: rgba(98, 98, 98, 0.73); color: whitesmoke; font-size: 1.2em;"
+                                    placeholder="ubit@buffalo.edu">
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="mbr-arrow mbr-arrow--floating text-center">
-                <div class="mbr-section__container container">
-                    <a class="mbr-arrow__link" href="#features1-75"><i class="glyphicon glyphicon-menu-down"></i></a>
                 </div>
             </div>
         </div>

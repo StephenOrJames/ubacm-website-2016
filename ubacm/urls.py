@@ -23,6 +23,7 @@ from main import views as main
 urlpatterns = [
     url(r'^$', main.index, name='index'),
     url(r'^contact$', main.contact, name='contact'),
+    url(r'^add$', main.add_user, name="add_user"),
 
     url(r'^blog/', include('blog.urls', namespace="blog")),
 
