@@ -1,0 +1,23 @@
+{% load static from staticfiles %}
+
+** UB ACM (http://ubacm.org)
+------------------------------------------------------------
+Open in your browser ({% url 'newsletter' letter_id=newsletter.id %})
+------------------------------------------------------------
+
+{% if newsletter.intro|length > 5 %}
+{{ newsletter.intro }}
+{% endif %}
+{% for widget in widgets %}
+** {{ widget.title }}
+------------------------------------------------------------
+
+{{ widget.text }}
+{% endfor %}
+
+Sent by Edwin Santos
+Secretary
+UB ACM
+{% if contact %} Unsubscribe ({% url 'unsubscribe' email=contact.username %}) {% else %} Contact ACM to unsubscribe ({% url 'index' %}) {% endif %}
+https://www.facebook.com/groups/ubacm
+https://twitter.com/ub_acm

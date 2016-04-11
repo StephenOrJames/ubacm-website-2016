@@ -18,14 +18,6 @@ class Post(Model):
         with open(self.html_file.path, encoding='utf-8') as f:
             return f.read()
 
-    #Overriding
-    def save(self, *args, **kwargs):
-        post = Post.objects.filter(identity=self.identity).first()
-        if post and post.id != self.id:
-            self.identity = random_generator
-
-        super(Post, self).save(*args, **kwargs)
-
     def __str__(self):
         return self.title
 

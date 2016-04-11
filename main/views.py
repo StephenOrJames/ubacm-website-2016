@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from contacts.models import Profile
+from contacts.models import Profile, Newsletter
 from events.models import Event
 from lib import random_generator
 from lib.ubitscrap import get_name
@@ -20,7 +20,7 @@ def index(request):
         events = Event.objects.order_by('-date').all()[:4]
     eboard = EBoard.objects.filter(id=len(EBoard.objects.all())).first()
     background = BackgroundImage.objects.all()[0]
-    return render(request, 'index.html', {'home': True, 'eboard': eboard, 'events': events, 'background': background})
+    return render(request, 'index.html', {'home': True, 'eboard': eboard, 'events': events.reverse(), 'background': background})
 
 
 def add_user(request):
@@ -66,4 +66,30 @@ def contact(request):
                                              message=data['message'])
     contactform.save()
     messages.success(request, "Your message was sent!")
+    return redirect('index')
+
+
+def show_newsletter(request, letter_id=None):
+    if letter_id is None:
+        messages.error(request, "Web page not found.")
+        return redirect('index')
+    newsletter = Newsletter.objects.filter(id=int(letter_id)).first()
+    if newsletter is None:
+        messages.error(request, "Newsletter not found.")
+        return redirect('index')
+    return render(request, 'newsletter.html', {'widgets': newsletter.widgets.all(), 'newsletter': newsletter})
+
+
+def unsubscribe_email(request, email=None):
+    if email is None:
+        messages.error(request, "Web page not found")
+        return redirect('index')
+    user = User.objects.filter(username=email).first()
+    if user is None:
+        messages.error(request, "Email not found in our servers")
+        redirect('index')
+    user.profile.send_email = False
+    user.profile.save()
+    user.save()
+    messages.success(request, "Email successfully unsubscribed.")
     return redirect('index')
