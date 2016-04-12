@@ -10,7 +10,7 @@ class PostModelForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        exclude = ['identity', 'html_file']
+        exclude = ['identity', 'posted_at', 'markdown_file']
 
 
 class PostAdmin(admin.ModelAdmin):
