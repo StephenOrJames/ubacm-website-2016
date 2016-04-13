@@ -10,6 +10,7 @@
     <script type="text/javascript" src="{% static 'pagedown-extra/Markdown.Extra.js' %}"></script>
     <script type="text/javascript" src="{% static 'pagedown_init.js' %}"></script>
     <script type="text/javascript" src="{% static 'admin/js/pagedown.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'main/mobirise/css/markdown.css' %}"/>
     <style>code {
         white-space: pre;
         background-color: rgba(122, 122, 122, 0.3);
@@ -18,6 +19,10 @@
 
     #post-body {
         font-family: "Roboto", Helvetica, Arial, sans-serif;
+    }
+
+    html {
+        overflow-x: hidden;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -65,7 +70,7 @@
 
     <section id="post-body">
         <div class="row">
-            <div class="col-lg-offset-2 col-lg-8 col-md-10 col-md-offset-1">
+            <div class="col-lg-offset-2 col-lg-8 col-md-10 col-md-offset-1 markdown-body">
             <hr>
                 {% block markdown %} {% endblock %}
             <hr>

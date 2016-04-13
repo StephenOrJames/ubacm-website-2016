@@ -38,7 +38,7 @@ class Post(Model):
         r = requests.post('https://api.github.com/markdown/raw', headers=headers, data=data)
         # avoid recursive invoke
         self.html = r.text.encode('utf-8')
-        self.html_file.save(filename, ContentFile(r.text.replace('\n', '').encode('utf-8')), save=False)
+        self.html_file.save(filename, ContentFile(r.text.encode('utf-8')), save=False)
         self.html_file.close()
         super(Post, self).save(*args, **kwargs)
 
