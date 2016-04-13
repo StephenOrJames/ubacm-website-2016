@@ -66,7 +66,9 @@
     <section id="post-body">
         <div class="row">
             <div class="col-lg-offset-2 col-lg-8 col-md-10 col-md-offset-1">
-                <p>{{ post.markdown|markdown }}</p>
+            <hr>
+                {% block markdown %} {% endblock %}
+            <hr>
             </div>
         </div>
     </section>

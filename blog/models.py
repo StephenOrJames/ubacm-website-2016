@@ -15,7 +15,8 @@ class Post(Model):
     author = ForeignKey(User, on_delete=CASCADE, related_name="posts")
     markdown = TextField(default="")
     posted_at = DateField(default=datetime.date.today)
-    markdown_file = FileField(upload_to="blog/markdown/", null=True, blank=True)
+    html = TextField(default="")
+    html_file = FileField(upload_to="blog/html/", null=True)
     identity = CharField(max_length=16, default=random_generator)
 
     def display_html(self):
@@ -23,12 +24,22 @@ class Post(Model):
             return f.read()
 
     def save(self, *args, **kwargs):
-        filename = self.title.replace(" ", "-") + "*.md"
-        if self.markdown_file:
-            self.markdown_file.delete(False)
-        self.markdown_file.save(filename, ContentFile(self.markdown), save=False)
-        # TODO: Call metalsmith instead of echo
-        os.system("echo " + os.path.join(settings.BASE_DIR, 'media/blog/markdown/' + filename))
+        if self.html_file:
+            self.html_file.delete(False)
+        filename = self.title.replace(' ', '-') + ".html"
+        headers = {'Content-Type': 'text/plain'}
+        if type(self.markdown) == bytes:  # sometimes body is str sometimes bytes...
+            data = self.markdown
+        elif type(self.markdown) == str:
+            data = self.markdown.encode('utf-8')
+        else:
+            print("something is wrong")
+            data = ""
+        r = requests.post('https://api.github.com/markdown/raw', headers=headers, data=data)
+        # avoid recursive invoke
+        self.html = r.text.encode('utf-8')
+        self.html_file.save(filename, ContentFile(r.text.replace('\n', '').encode('utf-8')), save=False)
+        self.html_file.close()
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
