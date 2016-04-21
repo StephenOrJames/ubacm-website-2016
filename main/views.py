@@ -25,10 +25,10 @@ def index(request):
 
 def add_user(request):
     email = request.POST.get('email', '')
-    if not '@buffalo.edu' in email:
+    if email.endswith('@buffalo.edu'):
         messages.error(request, "Must be a UB email")
         return redirect('index')
-    if len(email) < 8:
+    if len(email) < 16:
         messages.error(request, "Email is too short")
     if User.objects.filter(email=email).first():
         messages.error(request, "That email is already used")
