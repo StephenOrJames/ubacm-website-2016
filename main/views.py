@@ -25,7 +25,7 @@ def index(request):
 
 def add_user(request):
     email = request.POST.get('email', '')
-    if email.endswith('@buffalo.edu'):
+    if not email.endswith('@buffalo.edu'):
         messages.error(request, "Must be a UB email")
         return redirect('index')
     if len(email) < 16:
