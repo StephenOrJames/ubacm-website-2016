@@ -21,7 +21,7 @@ ENVIROMENT = {
     'pg_host': os.getenv("PG_HOST", 'localhost'),
     'pg_port': os.getenv("PG_PORT", ''),
     # For the whole program
-    'debug': os.getenv("DEBUG", True),
+    'debug': os.getenv("DEBUG", "True").lower() in ['True', 'true'],
     'secret': os.getenv("SECRET_KEY", 'd0t1=!a&3i3n9!-&3hynczg@r%5s^#7cec57_qcs+4s$tppien')
 }
 
@@ -154,3 +154,23 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if not DEBUG:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': '/home/dan/ubacm/ubacm.log',
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
+        },
+    }
