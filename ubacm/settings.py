@@ -17,7 +17,7 @@ ENVIROMENT = {
     # If postgres database
     'pg_database': os.getenv("PG_DATABASE", ""),
     'pg_user': os.getenv("PG_USER", ""),
-    'pg_password': os.getenv("PG_USER", ""),
+    'pg_password': os.getenv("PG_PASSWORD", ""),
     'pg_host': os.getenv("PG_HOST", 'localhost'),
     'pg_port': os.getenv("PG_PORT", ''),
     # For the whole program
