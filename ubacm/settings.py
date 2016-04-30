@@ -15,13 +15,13 @@ import os
 # EVERYTHING THAT NEEDS PRECONFIGURED
 ENVIROMENT = {
     # If postgres database
-    'pg_database': os.getenv("PG_DATABASE", ""),
-    'pg_user': os.getenv("PG_USER", ""),
-    'pg_password': os.getenv("PG_PASSWORD", ""),
-    'pg_host': os.getenv("PG_HOST", 'localhost'),
-    'pg_port': os.getenv("PG_PORT", ''),
+    'pg_database': "",
+    'pg_user': "",
+    'pg_password': "",
+    'pg_host': "",
+    'pg_port': "",
     # For the whole program
-    'debug': os.getenv("DEBUG", "True").lower() in ['True', 'true'],
+    'debug': True,
     'secret': os.getenv("SECRET_KEY", 'd0t1=!a&3i3n9!-&3hynczg@r%5s^#7cec57_qcs+4s$tppien')
 }
 
