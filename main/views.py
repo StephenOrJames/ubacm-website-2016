@@ -93,3 +93,13 @@ def unsubscribe_email(request, email=None):
     user.save()
     messages.success(request, "Email successfully unsubscribed.")
     return redirect('index')
+
+
+def handler404(request):
+    messages.error(request, "Uh oh! That page doesn't exist")
+    return redirect('index')
+
+
+def handler500(request):
+    messages.error(request, "Uh oh! Something went wrong!")
+    return redirect('index')
