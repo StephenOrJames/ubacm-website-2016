@@ -18,6 +18,6 @@ Open in your browser (http://ubacm.org/newsletter/{{newsletter.id}})
 Sent by Edwin Santos
 Secretary
 UB ACM
-{% if contact %} Unsubscribe ({% url 'unsubscribe' email=contact.username %}) {% else %} Contact ACM to unsubscribe ({% url 'index' %}) {% endif %}
+{% if contact %} Unsubscribe (http://ubacm.org/unsubscribe/{{contact.email}}) {% else %} Contact ACM to unsubscribe ({% url 'index' %}) {% endif %}
 https://www.facebook.com/groups/ubacm
 https://twitter.com/ub_acm

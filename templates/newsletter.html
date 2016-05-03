@@ -312,7 +312,7 @@
                                                                             Secretary <br/>
                                                                             UB ACM <br/>
                                                                             {% if contact %}
-                                                                            <a target='_blank' href="{% url 'unsubscribe' email=contact.username %}"
+                                                                            <a target='_blank' href="http://ubacm.org/unsubscribe/{{contact.username}}"
                                                                                style='color:#AAAAAA;'>Unsubscribe</a>
                                                                             {% else %}
                                                                                 <a target='_blank' href="{% url 'index' %}"
