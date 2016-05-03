@@ -41,7 +41,7 @@ def add_user(request):
     user = User.objects.create_user(ubit, email, random_generator(), first_name=name_list[0],
                                     last_name=name_list[1])
     user.save()
-    profile = Profile.objects.create(attended=0, user=user, phone_number="")
+    profile = Profile.objects.create(attended=0, user=user, phone_number="00")
     profile.save()
     messages.success(request, "Successfully added you to the list!")
     return redirect('index')
