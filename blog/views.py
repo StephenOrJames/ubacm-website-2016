@@ -9,7 +9,7 @@ from blog.models import Post
 
 
 def index(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().reverse()
     paginator = Paginator(posts, 15)
     page = int(request.GET.get('page', 1))
     try:
