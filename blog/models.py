@@ -47,3 +47,4 @@ class Post(Model):
 
     class Meta:
         db_table = "posts"
+        ordering = ['-posted_at']
