@@ -41,15 +41,15 @@ class Newsletter(Model):
     def save(self, *args, **kwargs):
         plaintext = get_template('newsletter.txt')  # Text form
         htmly     = get_template('newsletter.html')  # HTML form
-        #for contact in User.objects.all():  # Send it to everyone
-        #    if contact.profile.send_email:
-        #        d = Context({'widgets': self.widgets.all(), 'newsletter': self, 'contact': contact})
-        #        text_content = plaintext.render(d)
-        #        html_content = htmly.render(d)
-        #        subject, from_email, to = self.subject, 'ubsa-acm@buffalo.edu', contact.email
-        #        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-        #        msg.attach_alternative(html_content, "text/html")
-        #        msg.send()
+        for contact in User.objects.all():  # Send it to everyone
+            if contact.profile.send_email:
+                d = Context({'widgets': self.widgets.all(), 'newsletter': self, 'contact': contact})
+                text_content = plaintext.render(d)
+                html_content = htmly.render(d)
+                subject, from_email, to = self.subject, 'ubsa-acm@buffalo.edu', contact.email
+                msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
         super(Newsletter, self).save(*args, **kwargs)
 
 

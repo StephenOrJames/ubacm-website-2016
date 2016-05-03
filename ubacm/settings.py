@@ -95,6 +95,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ubacm.wsgi.application'
 
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = "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"
+
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 if DEBUG:
