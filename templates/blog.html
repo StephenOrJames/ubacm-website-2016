@@ -15,7 +15,7 @@
                             <div class="pagination" style="margin: auto 0">
                                 <span class="step-links">
                                 {% if posts.has_previous %}
-                                <a href="?page={{ posts.previous_page_number }}" class="btn btn-primary">Previous</a>
+                                <a href="?page={{ posts.previous_page_number }}" style="margin: 5px !important;" class="btn btn-primary">Previous</a>
                                 {% endif %}
 
                                 <span class="current" style="color:white">
@@ -23,7 +23,7 @@
                                 </span>
 
                                 {% if posts.has_next %}
-                                <a href="?page={{ posts.next_page_number }}" class="btn btn-primary">Next</a>
+                                <a href="?page={{ posts.next_page_number }}" style="margin: 5px !important;" class="btn btn-primary">Next</a>
                                 {% endif %}
                                 </span>
                             </div>
@@ -35,7 +35,7 @@
     </section>
 
     {% for post in posts %}
-        <section class="mbr-section" id="header3-78">
+        <section class="mbr-section" style="padding: 10px;" id="header3-78">
             <div class="mbr-section__container container mbr-section__container--first">
                 <div class="mbr-header mbr-header--wysiwyg row">
                     <div class="col-sm-8 col-sm-offset-2">
