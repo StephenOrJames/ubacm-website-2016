@@ -2,7 +2,7 @@
 
 ** UB ACM (http://ubacm.org)
 ------------------------------------------------------------
-Open in your browser ({% url 'newsletter' letter_id=newsletter.id %})
+Open in your browser (http://ubacm.org/newsletter/{{newsletter.id}})
 ------------------------------------------------------------
 
 {% if newsletter.intro|length > 5 %}
