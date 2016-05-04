@@ -654,3 +654,11 @@
   position: relative;
   border-color: #4078c0;
 }
+
+/* Small Devices, Tablets */
+@media (max-width : 768px) {
+  .pushed-blog {
+    width: 96% !important;
+    margin: auto !important;
+  }
+}
