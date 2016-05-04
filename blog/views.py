@@ -13,19 +13,19 @@ def index(request):
     if request.method == 'POST':
         posts1 = Post.objects.filter(title__icontains=request.POST.get('search', '')).all()
         posts2 = Post.objects.filter(description__icontains=request.POST.get('search', '')).all()
-        posts = posts1 | posts2
+        blogs = posts1 | posts2
     else:
         posts = Post.objects.all()
-    paginator = Paginator(posts, 15)
-    page = int(request.GET.get('page', 1))
-    try:
-        blogs = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        blogs = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        blogs = paginator.page(paginator.num_pages)
+        paginator = Paginator(posts, 15)
+        page = int(request.GET.get('page', 1))
+        try:
+            blogs = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            blogs = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            blogs = paginator.page(paginator.num_pages)
     return render(request, 'blog.html', {'posts': blogs})
 
 

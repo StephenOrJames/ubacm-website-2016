@@ -27,6 +27,7 @@
                                     </form>
                                 </div>
                             </div>
+                        {% if posts.paginator.num_pages %}
                             <div class="pagination" style="margin: auto 0">
                                 <span class="step-links">
                                 {% if posts.has_previous %}
@@ -44,6 +45,7 @@
                                     {% endif %}
                                 </span>
                             </div>
+                        {% endif %}
                         </div>
                     </div>
                 </div>
