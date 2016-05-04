@@ -1,7 +1,8 @@
 {% extends 'layout.html' %}
 {% block content %}
     {% load static from staticfiles %}
-    <section class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--full-height mbr-section--bg-adapted mbr-parallax-background mbr-after-navbar"
+    <section
+            class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--full-height mbr-section--bg-adapted mbr-parallax-background mbr-after-navbar"
             id="header1-73" style="background-image: url({{ background.image.url }});">
         <div class="mbr-box__magnet mbr-box__magnet--sm-padding mbr-box__magnet--center-left">
             <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(76, 105, 114);"></div>
@@ -9,8 +10,9 @@
                 <div class="mbr-box mbr-box--stretched">
                     <div class="mbr-box__magnet mbr-box__magnet--center-left">
                         <div class="row">
-                            <div class=" col-sm-8">
+                            <div class=" col-sm-12 col-lg-8 col-md-10">
                                 <div class="mbr-hero animated fadeInUp">
+                                    <br/>
                                     <br/>
                                     <h1 class="mbr-hero__text">Association for Computing Machinery Buffalo Chapter</h1>
                                     <p class="mbr-hero__subtext">Our mission is to foster a student community around
@@ -20,18 +22,25 @@
                                 </div>
                                 <div class="mbr-buttons btn-inverse mbr-buttons--left">
                                     <a class="mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning"
-                                        href="#features1-77">EVENTS</a>
+                                       href="#features1-77">EVENTS</a>
                                     <a class="mbr-buttons__btn btn btn-lg btn-default animated fadeInUp delay"
                                        href="{% url 'blog:index' %}">RESOURCES</a>
                                     <hr style="width: 60%">
                                     <form action="{% url 'add_user' %}" method="post">
                                         {% csrf_token %}
-                                    <button class="pull-right mbr-buttons__btn btn btn-lg btn-default animated fadeInUp delay"
-                                       type="submit">SIGNUP FOR NEWSLETTER</button>
-                                    <input type="email" class="form-control" name="email"
-                                           style="width: 40%; border-radius: 10px;
-                                           background-color: rgba(98, 98, 98, 0.73); color: whitesmoke; font-size: 1.2em;"
-                                    placeholder="ubit@buffalo.edu">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-sm-12">
+                                                <input type="email" class="form-control" name="email"
+                                                       style="border-radius: 10px;
+                                                background-color: rgba(98, 98, 98, 0.73); color: whitesmoke; font-size: 1.2em;"
+                                                       placeholder="ubit@buffalo.edu"></div>
+                                            <div class="col-lg-5 col-sm-12">
+                                                <button class="mbr-buttons__btn btn btn-lg btn-default animated fadeInUp delay"
+                                                        type="submit">SIGNUP FOR NEWSLETTER
+                                                </button>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -41,34 +50,37 @@
             </div>
         </div>
     </section>
-
+    <div class="clearfix"></div>
     <section class="content-2 col-4" id="features1-77" style="background-color: rgb(28, 73, 110);">
 
         <div class="container">
             <div class="row">
                 {% for event in events %}
-                <div>
+                    <div>
                     <div class="thumbnail">
                         {% if event.picture %}
                             <div class="image"><img class="undefined" src="{{ event.picture.url }}">
                         {% else %}
-                        <div class="image"><img class="undefined" src="{% static 'main/images/maps-350x350-26.png' %}">
+                            <div class="image">
+                            <img class="undefined" src="{% static 'main/images/maps-350x350-26.png' %}">
                         {% endif %}
                         </div>
                         <div class="caption">
                             <div>
-                                <h3>{{ event.name }}<br/><br/>{{ event.date }} - {{ event.time }}<br/><br/>{{ event.location }}</h3>
+                                <h3>{{ event.name }}<br/><br/>{{ event.date }}
+                                    - {{ event.time }}<br/><br/>{{ event.location }}</h3>
                                 <p>{{ event.description }}</p>
                             </div>
                             {% if event.link|length > 5 %}
-                            <p class="group"><a href="{{ event.link }}" target="_blank" class="btn btn-info">MORE INFO</a></p>
+                                <p class="group"><a href="{{ event.link }}" target="_blank" class="btn btn-info">MORE
+                                    INFO</a></p>
                             {% endif %}
                         </div>
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
+                </div>
             </div>
-        </div>
     </section>
 
     <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="social-buttons2-84"

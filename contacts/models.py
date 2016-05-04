@@ -25,8 +25,6 @@ class Profile(Model):
 class Newsletter(Model):
     subject = CharField(max_length=40, default="UB ACM Newsletter")
 
-    header_image = ImageField(upload_to="newsletters/images", null=True, blank=True,
-                              help_text="This appears at the top of the email, leave blank for default.")
     intro = TextField(default="", help_text="If you want, a little paragraph about how things are going.", blank=True)
 
     sent_on = DateField(default=datetime.date.today)
