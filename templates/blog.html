@@ -11,20 +11,37 @@
                     <div class="thumbnail">
                         <div class="caption">
                             <h3>UB ACM Blog and Resources</h3>
-                            <div><p>Search and Learn something new! <br></p></div>
+                            <div class="row">
+                                <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input placeholder="Keyword" name="search" min="3" style="border-radius: 10px;
+                                               background-color: rgba(98, 98, 98, 0.73); text-align: center;
+                                               color: whitesmoke; font-size: 1.2em;" class="form-control" type="text">
+                                        <br/>
+                                        <div>
+                                            <p>
+                                                <button type="submit" class="btn">Search</button>
+                                                and Learn something new! <br></p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             <div class="pagination" style="margin: auto 0">
                                 <span class="step-links">
                                 {% if posts.has_previous %}
-                                <a href="?page={{ posts.previous_page_number }}" style="margin: 5px !important;" class="btn btn-primary">Previous</a>
+                                    <a href="?page={{ posts.previous_page_number }}" style="margin: 5px !important;"
+                                       class="btn btn-primary">Previous</a>
                                 {% endif %}
 
-                                <span class="current" style="color:white">
+                                    <span class="current" style="color:white">
                                     Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
                                 </span>
 
-                                {% if posts.has_next %}
-                                <a href="?page={{ posts.next_page_number }}" style="margin: 5px !important;" class="btn btn-primary">Next</a>
-                                {% endif %}
+                                    {% if posts.has_next %}
+                                        <a href="?page={{ posts.next_page_number }}" style="margin: 5px !important;"
+                                           class="btn btn-primary">Next</a>
+                                    {% endif %}
                                 </span>
                             </div>
                         </div>
@@ -33,6 +50,19 @@
             </div>
         </div>
     </section>
+
+    {% if posts|length < 1 %}
+        <section class="mbr-section" style="padding: 5px; height: 40vh;" id="header3-78">
+            <div class="mbr-section__container container mbr-section__container--first" style="padding: 15px">
+                <div class="mbr-header mbr-header--wysiwyg row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <h3 class="mbr-header__text text-center">There are no posts!</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
 
     {% for post in posts %}
         <section class="mbr-section" style="padding: 5px;" id="header3-78">
@@ -47,7 +77,7 @@
                             posted {{ post.posted_at }}</p>
                         <hr>
                         {% if post.description|length > 5 %}
-                        <p>{{ post.description }}</p>
+                            <p>{{ post.description }}</p>
                         {% endif %}
                     </div>
                 </div>

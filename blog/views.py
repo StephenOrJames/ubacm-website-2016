@@ -4,12 +4,18 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import Template, Context
 from django.template.response import TemplateResponse
+from itertools import chain
 
 from blog.models import Post
 
 
 def index(request):
-    posts = Post.objects.all()
+    if request.method == 'POST':
+        posts1 = Post.objects.filter(title__icontains=request.POST.get('search', '')).all()
+        posts2 = Post.objects.filter(description__icontains=request.POST.get('search', '')).all()
+        posts = posts1 | posts2
+    else:
+        posts = Post.objects.all()
     paginator = Paginator(posts, 15)
     page = int(request.GET.get('page', 1))
     try:
