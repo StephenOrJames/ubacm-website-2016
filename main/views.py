@@ -20,7 +20,8 @@ def index(request):
         events = Event.objects.order_by('-date').all()[:4]
     eboard = EBoard.objects.filter(id=len(EBoard.objects.all())).first()
     background = BackgroundImage.objects.all()[0]
-    return render(request, 'index.html', {'home': True, 'eboard': eboard, 'events': events.reverse(), 'background': background})
+    return render(request, 'index.html',
+                  {'home': True, 'eboard': eboard, 'events': events.reverse(), 'background': background})
 
 
 def add_user(request):
@@ -28,7 +29,7 @@ def add_user(request):
     if not email.endswith('@buffalo.edu'):
         messages.error(request, "Must be a UB email")
         return redirect('index')
-    if len(email) < 16:
+    if len(email) < 14:
         messages.error(request, "Email is too short")
     if User.objects.filter(email=email).first():
         messages.error(request, "That email is already used")
@@ -92,6 +93,65 @@ def unsubscribe_email(request, email=None):
     user.profile.save()
     user.save()
     messages.success(request, "Email successfully unsubscribed.")
+    return redirect('index')
+
+
+"""Meeting information"""
+
+
+def show_meeting(request):
+    from events.models import Meeting
+    if len(Meeting.objects.all()) < 1:
+        messages.error(request, "No meetings currently!")
+        return redirect('index')
+    meeting = Meeting.objects.all().reverse()[0]
+    if meeting and meeting.is_open:
+        return render(request, 'meeting.html', {'meeting': meeting})
+    messages.error(request, "The meeting form isn't open yet!")
+    return redirect('index')
+
+
+def add_response(request):
+    from events.models import Meeting
+    email = request.POST.get('name', '')
+    meeting = Meeting.objects.all().reverse()[0]
+    extra = request.POST.get('extra_question', '')
+    comments = request.POST.get('comments', '')
+    if len(extra) < 1 or len(comments) < 1:
+        messages.error(request, "A field was too short!")
+        return redirect('meeting')
+    if not email.endswith('@buffalo.edu'):
+        messages.error(request, "Must be a UB email")
+        return redirect('meeting')
+    if len(email) < 14:
+        messages.error(request, "Email is too short")
+        return redirect('meeting')
+
+    # See if they already submitted
+    if meeting.responses.filter(user=User.objects.filter(email=email).first()).first():
+        messages.error(request, "That email is already used for a submission")
+        return redirect('meeting')
+    if not User.objects.filter(email=email).first():
+        ubit = str(email).split('@')[0]
+        name_list = get_name(ubit)
+        if None in name_list:
+            messages.error(request, "That name was not found")
+            return redirect('meeting')
+        user = User.objects.create_user(ubit, email, random_generator(), first_name=name_list[0],
+                                        last_name=name_list[1])
+        user.save()
+        profile = Profile.objects.create(attended=0, user=user, phone_number="00")
+        profile.save()
+        user.profile.save()
+    else:
+        from events.models import Response
+        user = User.objects.filter(email=email).first()
+    response = Response.objects.create(user=user, meeting=meeting, extra_question_answer=extra, comments=comments)
+    response.save()
+    user.profile.attended += 1
+    user.save()
+    user.profile.save()
+    messages.success(request, 'Thank you for your submission!')
     return redirect('index')
 
 

@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^add$', main.add_user, name="add_user"),
     url(r'^newsletter/(?P<letter_id>[0-9]+)$', main.show_newsletter, name='newsletter'),
     url(r'^unsubscribe/(?P<email>[a-zA-Z0-9]+)$', main.unsubscribe_email, name='unsubscribe'),
+    url(r'^meeting$', main.show_meeting, name='meeting'),
+    url(r'^meeting/response$', main.add_response, name='add_response'),
 
     url(r'^blog/', include('blog.urls', namespace="blog")),
 
