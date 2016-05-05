@@ -146,8 +146,8 @@ def add_response(request):
     else:
         from events.models import Response
         user = User.objects.filter(email=email).first()
-    response = Response.objects.create(user=user, meeting=meeting, extra_question_answer=extra, comments=comments)
-    response.save()
+    meeting_response = Response.objects.create(user=user, meeting=meeting, extra_question_answer=extra, comments=comments)
+    meeting_response.save()
     user.profile.attended += 1
     user.save()
     user.profile.save()
