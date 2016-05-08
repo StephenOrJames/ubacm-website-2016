@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    {% load static from staticfiles %}
+    <section class="content-2 simple col-1 col-undefined mbr-parallax-background mbr-after-navbar" id="content5-77"
+             style="background-image: url({% static 'main/images/iphone-6-458151-1920-1920x1285-67.jpg' %});">
+        <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(0, 0, 0);"></div>
+        <div class="container">
+            <div class="row">
+                <div>
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>Meeting Form</h3>
+                            <div><p>For {{ meeting.date }}</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="post-body">
+        <div class="row">
+            <div class="col-lg-offset-4 col-lg-4 col-md-10 col-md-offset-1 markdown-body pushed-blog" style="min-height: 60vh;">
+                <form class="form text-center" method="post" action="{% url 'add_response' %}">
+                    <br/>
+                    {% csrf_token %}
+                    <input type="hidden" name="meeting_id" value="{{ meeting.id }}">
+                    <p style="font-size: 1.5em;">Please fill out this form for <br/>attendance and data for us!</p>
+                    <label for="name" style="font-size: larger">Your UBIT Email</label>
+                    <input type="email" name="name" minlength="14" id="name" class="form-control text-center" style="border-radius: 15px; font-size: 1.2em">
+                    <br/>
+                    <label for="extra_question" style="font-size: larger">{{ meeting.extra_question }}</label>
+                    <textarea id="extra_question" minlength="2" class="form-control" style="resize: none;" rows="6" name="extra_question"></textarea>
+                    <br/>
+                    <label for="comments" style="font-size: larger">What would you like to learn more about?</label>
+                    <textarea id="comments" minlength="2" class="form-control" style="resize: none;" rows="6" name="comments"></textarea>
+                    <br/>
+                    <button class="btn btn-primary text-center" type="submit">Submit!</button>
+                    <hr/>
+                    <br/>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
