@@ -18,6 +18,3 @@ class Event(Model):
     class Meta:
         db_table = "events"
         ordering = ['-date',]
-
-
-
