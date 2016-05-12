@@ -3,26 +3,36 @@
 <head>
     <!-- Mobirise Free Bootstrap Template, https:/mobirise.com -->
     {% load static from staticfiles %}
+    {% load compress %}
     <meta charset="UTF-8">
     <title>UB ACM</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="generator" content="Mobirise v2.6.1, mobirise.com">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static 'main/images/acm_logo.png' %}" type="image/x-icon">
-    <meta name="description" content="">
+    <meta name="description"
+          content="A student community around computer science and software engineering at the University at Buffalo">
+    <meta name="keywords" content="ACM, University at Buffalo, Computer, Software, Engineering, Monkeys">
+
+    <meta property="og:title" content="UB ACM"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://www.ubacm.org"/>
+    <meta property="og:image" content="http://ubacm.org/static/main/images/acm_logo.png"/>
 
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:700,400&amp;subset=cyrillic,latin,greek,vietnamese">
-    <link rel="stylesheet" href="{% static 'main/bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'main/animate.css/animate.min.css' %}">
-    <link rel="stylesheet" href="{% static 'main/socicon/css/socicon.min.css' %}">
-    <link rel="stylesheet" href="{% static 'main/mobirise/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'main/mobirise-slider/style.css' %}">
-    <link rel="stylesheet" href="{% static 'main/mobirise-gallery/style.css' %}">
-    <link rel="stylesheet" href="{% static 'main/mobirise/css/mbr-additional.css' %}" type="text/css">
-    <link href="{% static 'main/mobirise/css/jquery.bxslider.css' %}" rel="stylesheet"/>
-    <link rel="stylesheet" href="{% static 'main/alertify/alertify.core.css' %}">
-    <link rel="stylesheet" href="{% static 'main/alertify/alertify.default.css' %}">
+    {% compress css %}
+        <link rel="stylesheet" href="{% static 'main/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'main/animate.css/animate.min.css' %}">
+        <link rel="stylesheet" href="{% static 'main/socicon/css/socicon.min.css' %}">
+        <link rel="stylesheet" href="{% static 'main/mobirise/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'main/mobirise-slider/style.css' %}">
+        <link rel="stylesheet" href="{% static 'main/mobirise-gallery/style.css' %}">
+        <link rel="stylesheet" href="{% static 'main/mobirise/css/mbr-additional.css' %}" type="text/css">
+        <link href="{% static 'main/mobirise/css/jquery.bxslider.css' %}" rel="stylesheet"/>
+        <link rel="stylesheet" href="{% static 'main/alertify/alertify.core.css' %}">
+        <link rel="stylesheet" href="{% static 'main/alertify/alertify.default.css' %}">
+    {% endcompress %}
 
 
 </head>
@@ -102,20 +112,20 @@
     </div>
 </footer>
 
-
-<script src="{% static 'main/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'main/bootstrap/js/bootstrap.min.js' %}"></script>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-<script src="{% static 'main/smooth-scroll/SmoothScroll.js' %}"></script>
-<script src="{% static 'main/jarallax/jarallax.js' %}"></script>
-<script src="{% static 'main/bootstrap-carousel-swipe/bootstrap-carousel-swipe.js' %}"></script>
-<script src="{% static 'main/masonry/masonry.pkgd.min.js' %}"></script>
-<script src="{% static 'main/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-<script src="{% static 'main/social-likes/social-likes.js' %}"></script>
-<script src="{% static 'main/mobirise/js/script.js' %}"></script>
-<script src="{% static 'main/mobirise/js/jquery.bxslider.min.js' %}"></script>
-<script src="{% static 'main/mobirise-gallery/script.js' %}"></script>
-<script src="{% static 'main/alertify/alertify.min.js' %}"></script>
+{% compress js %}
+    <script src="{% static 'main/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'main/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'main/smooth-scroll/SmoothScroll.js' %}"></script>
+    <script src="{% static 'main/jarallax/jarallax.js' %}"></script>
+    <script src="{% static 'main/bootstrap-carousel-swipe/bootstrap-carousel-swipe.js' %}"></script>
+    <script src="{% static 'main/masonry/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'main/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'main/social-likes/social-likes.js' %}"></script>
+    <script src="{% static 'main/mobirise/js/script.js' %}"></script>
+    <script src="{% static 'main/mobirise/js/jquery.bxslider.min.js' %}"></script>
+    <script src="{% static 'main/mobirise-gallery/script.js' %}"></script>
+    <script src="{% static 'main/alertify/alertify.min.js' %}"></script>
+{% endcompress %}
 
 <script>
     {% if messages %}
