@@ -34,13 +34,12 @@
         <link rel="stylesheet" href="{% static 'main/alertify/alertify.default.css' %}">
     {% endcompress %}
 
-
 </head>
 <body>
 
 <section
         class="mbr-navbar mbr-navbar--freeze mbr-navbar--absolute mbr-navbar--transparent mbr-navbar--sticky mbr-navbar--auto-collapse"
-        id="menu-74">
+        id="menu">
     <div class="mbr-navbar__section mbr-section">
         <div class="mbr-section__container container">
             <div class="mbr-navbar__container">
@@ -61,24 +60,24 @@
                             <ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active">
                                 {% if home %}
                                     <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white"
-                                                                    href="#header1-73">HOME</a></li>
+                                                                    href="#header">HOME</a></li>
                                     <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white"
-                                                                    href="#features1-77">EVENTS</a></li>
+                                                                    href="#events">EVENTS</a></li>
                                     <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white"
-                                                                    href="#pricing-table1-86">E-BOARD</a></li>
+                                                                    href="#eboard">E-BOARD</a></li>
                                     <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white"
-                                                                    href="#form1-89">CONTACT</a></li>
+                                                                    href="#contact">CONTACT</a></li>
                                 {% else %}
                                     <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white"
                                                                     href="{% url 'index' %}">HOME</a></li>
                                     <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white"
-                                                                    href="{% url 'index' %}#features1-77">EVENTS</a>
+                                                                    href="{% url 'index' %}#events">EVENTS</a>
                                     </li>
                                     <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white"
-                                                                    href="{% url 'index' %}#pricing-table1-86">E-BOARD</a>
+                                                                    href="{% url 'index' %}#eboard">E-BOARD</a>
                                     </li>
                                     <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white"
-                                                                    href="{% url 'index' %}#form1-89">CONTACT</a></li>
+                                                                    href="{% url 'index' %}#contact">CONTACT</a></li>
                                 {% endif %}
                             </ul>
                         </div>
@@ -99,7 +98,7 @@
 {% block content %}
 {% endblock %}
 
-<footer class="mbr-section mbr-section--relative mbr-section--fixed-size" id="footer1-91"
+<footer class="mbr-section mbr-section--relative mbr-section--fixed-size" id="footer"
         style="background-color: rgb(68, 68, 68);">
 
     <div class="mbr-section__container container">
