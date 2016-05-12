@@ -3,17 +3,15 @@
     {% load static from staticfiles %}
     <section
             class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--full-height mbr-section--bg-adapted mbr-parallax-background mbr-after-navbar"
-            id="header1-73" style="background-image: url({{ background.image.url }});">
+            id="header1-73" style="background-image: url({{ background.image.url }}); background-size: 100%; padding-top: 100px;">
         <div class="mbr-box__magnet mbr-box__magnet--sm-padding mbr-box__magnet--center-left">
             <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(76, 105, 114);"></div>
-            <div class="mbr-box__container mbr-section__container container">
+            <div class="mbr-section__container container">
                 <div class="mbr-box mbr-box--stretched">
                     <div class="mbr-box__magnet mbr-box__magnet--center-left">
                         <div class="row">
                             <div class=" col-sm-12 col-lg-8 col-md-10">
                                 <div class="mbr-hero animated fadeInUp">
-                                    <br/>
-                                    <br/>
                                     <h1 class="mbr-hero__text">Association for Computing Machinery Buffalo Chapter</h1>
                                     <p class="mbr-hero__subtext">Our mission is to foster a student community around
                                         computer science and software engineering at the University at Buffalo through
@@ -21,22 +19,28 @@
                                         talks, hackathons, and social events.<br></p>
                                 </div>
                                 <div class="mbr-buttons btn-inverse mbr-buttons--left">
-                                    <a class="mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning"
-                                       href="#features1-77">EVENTS</a>
-                                    <a class="mbr-buttons__btn btn btn-lg btn-default animated fadeInUp delay"
-                                       href="{% url 'blog:index' %}">RESOURCES</a>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xs-12">
+                                            <a class="mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning"
+                                               href="#features1-77" style="width: 100%">EVENTS</a>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <a class="mbr-buttons__btn btn btn-lg btn-primary animated fadeInUp delay"
+                                               href="{% url 'blog:index' %}" style="width: 100%">RESOURCES</a>
+                                        </div>
+                                    </div>
                                     <hr style="width: 60%">
                                     <form action="{% url 'add_user' %}" method="post">
                                         {% csrf_token %}
                                         <div class="row">
-                                            <div class="col-lg-4 col-sm-12">
-                                                <input type="email" class="form-control" name="email"
-                                                       style="border-radius: 10px;
+                                            <div class="col-sm-6 col-xs-12">
+                                                <input type="email" class="form-control animated fadeInUp delay" name="email"
+                                                       style="border-radius: 10px; margin-bottom: 10px; text-align: center;
                                                 background-color: rgba(98, 98, 98, 0.73); color: whitesmoke; font-size: 1.2em;"
-                                                       placeholder="ubit@buffalo.edu"></div>
-                                            <div class="col-lg-5 col-sm-12">
-                                                <button class="mbr-buttons__btn btn btn-lg btn-default animated fadeInUp delay"
-                                                        type="submit">SIGNUP FOR NEWSLETTER
+                                                       placeholder="ubit@buffalo.edu" required="required"></div>
+                                            <div class="col-sm-6 col-xs-12">
+                                                <button class="mbr-buttons__btn btn btn-lg btn-success animated fadeInUp delay"
+                                                        type="submit" style="display: inline-block; width: 100%">SIGNUP FOR NEWSLETTER
                                                 </button>
                                             </div>
                                             <div class="clearfix"></div>
