@@ -15,13 +15,13 @@ import os
 # EVERYTHING THAT NEEDS PRECONFIGURED
 ENVIROMENT = {
     # If postgres database
-    'pg_database': "",
-    'pg_user': "",
-    'pg_password': "",
-    'pg_host': "",
+    'pg_database': "ubacm",
+    'pg_user': "database",
+    'pg_password': "jaredvar",
+    'pg_host': "localhost",
     'pg_port': "",
     # For the whole program
-    'debug': True,
+    'debug': False,
     'secret': os.getenv("SECRET_KEY", 'd0t1=!a&3i3n9!-&3hynczg@r%5s^#7cec57_qcs+4s$tppien')
 }
 
@@ -41,7 +41,7 @@ DEBUG = ENVIROMENT['debug']
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = ['ubacm.org']
+    ALLOWED_HOSTS = ['*']
 
 GRAPPELLI_ADMIN_TITLE = "UB ACM"
 
