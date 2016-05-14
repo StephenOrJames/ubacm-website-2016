@@ -6,8 +6,10 @@ document.getElementById('file').onchange = function () {
     var found = $.inArray(ext.toLowerCase(), _validFileExtensions) > -1;
     if (!found) {
         document.getElementById("requestButton").disabled = "disabled";
+        document.getElementById('current').innerText = "Not Valid File";
     } else {
         document.getElementById("requestButton").disabled = "";
+        document.getElementById('current').innerText = "Upload: " + f;
     }
 };
 
