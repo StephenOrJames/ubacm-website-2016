@@ -1,0 +1,137 @@
+{% extends 'layout.html' %}
+{% block content %}
+    {% load static from staticfiles %}
+    <link href="{% static 'pagedown/demo/browser/demo.css' %}" type="text/css" media="all" rel="stylesheet"/>
+    <link href="{% static 'admin/css/pagedown.css' %}" type="text/css" media="all" rel="stylesheet"/>
+    <script type="text/javascript" src="{% static 'pagedown/Markdown.Converter.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pagedown-extra/pagedown/Markdown.Converter.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pagedown/Markdown.Sanitizer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pagedown/Markdown.Editor.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pagedown-extra/Markdown.Extra.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pagedown_init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/pagedown.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'main/mobirise/css/markdown.css' %}"/>
+    <style>code {
+        white-space: pre;
+        background-color: rgba(122, 122, 122, 0.3);
+        color: #000000;
+    }
+
+    html {
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        letter-spacing: 2px;
+    }
+
+    p {
+        font-size: 1.2em !important;
+    }
+
+    .fileUpload {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+    }
+
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    </style>
+    {% load markdown_deux_tags %}
+    <section class="content-2 simple col-1 col-undefined mbr-parallax-background mbr-after-navbar" id="content5-77"
+             style="background-image: url({% static 'main/images/iphone-6-458151-1920-1920x1285-67.jpg' %});">
+        <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(0, 0, 0);"></div>
+        <div class="container">
+            <div class="row">
+                <div>
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>Blog Post Request</h3>
+                            <div><p>Have a cool post you want to share? Fill out some information and send it to us!
+                                <br/>We will review it and post it ASAP. Note that we use GitHub's markdown API.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mbr-section" style="padding: 5px;" id="header3-78">
+        <div class="mbr-section__container container mbr-section__container--first" style="padding: 15px">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mbr-header mbr-header--wysiwyg row">
+                    <div class="col-sm-8 col-sm-offset-2 well">
+                        <h3 class="mbr-header__text">Our Terms to Posting</h3>
+                        <hr/>
+                        <p>By requesting this post to be reviewed for the UB ACM blog, you agree that allowing this
+                            post to become public is up to the site administration. Anything that they deem offensive,
+                            crude,
+                            or demeaning will more than likely not be allowed to be posted without editing the content.
+                            If
+                            this is the case, either you will be contacted - by email - to fix the post, or the reviewer
+                            will take it upon themselves to fix any issues. If at any time you want the post taken down,
+                            please contact UB ACM and they will remove it. Just have fun and don't be stupid please
+                            :)</p>
+                        <hr/>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="agree" required="required">I agree to these
+                                terms</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mbr-header mbr-header--wysiwyg row">
+                    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-center">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" required="required" placeholder="ubit@buffalo.edu" name="email" id="email"
+                                   class="form-control text-center">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Title of Post</label>
+                            <input type="text" maxlength="70" placeholder="How to Build Something Cool" required="required" name="title" id="title"
+                                   class="form-control text-center">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Short Description</label>
+                            <textarea maxlength="128" required="required" name="description" id="description"
+                                   class="form-control text-center" placeholder="This shows you how to..." style="resize: none;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">Markdown File - Most Extensions Supported</label><br/>
+                            <div class="fileUpload btn btn-primary">
+                                <span id="current">Upload</span>
+                                <input type="file"
+                                       accept=".markdown, .txt, .mdown, .mkdn, .md, .text, .mkd, .mdwn, .mdtxt, .mdtext"
+                                       name="file" id="file" class="upload"/>
+                            </div>
+                        </div>
+                        <hr/>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script>
+        document.getElementById('file').onchange = function () {
+            var f = this.value;
+            f = f.replace(/.*[\/\\]/, '');
+            document.getElementById('current').innerText = "Upload: " + f;
+        };
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+{% endblock %}
