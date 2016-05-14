@@ -86,5 +86,17 @@
             </div>
         </section>
     {% endfor %}
-
+    <hr/>
+    <section class="mbr-section" style="padding: 5px;" id="header3-78">
+        <div class="mbr-section__container container mbr-section__container--first" style="padding: 15px">
+            <div class="mbr-header mbr-header--wysiwyg row">
+                <div class="text-center col-sm-8 col-sm-offset-2">
+                    <h3>Want to add your own post?</h3>
+                    <br/>
+                    <a class="btn btn-primary" href="{% url 'blog:request' %}">Add Post</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br/>
 {% endblock %}

@@ -10,3 +10,10 @@ def random_generator(size=16, chars=string.ascii_uppercase + string.digits):
     :return: A random hash combination of the chars input and size.
     """
     return ''.join(random.choice(chars) for x in range(size))
+
+
+def check_lengths(*args, size=5):
+    for value in args:
+        if len(value) < size:
+            return False
+    return True

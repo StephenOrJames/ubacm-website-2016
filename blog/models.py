@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.files.base import ContentFile
 from lib import random_generator
 from django.contrib.auth.models import User
-from django.db.models import Model, CharField, ForeignKey, TextField, CASCADE, DateField, FileField
+from django.db.models import Model, CharField, ForeignKey, TextField, CASCADE, DateField, FileField, BooleanField
 
 
 class Post(Model):
@@ -48,3 +48,29 @@ class Post(Model):
     class Meta:
         db_table = "posts"
         ordering = ['-posted_at']
+
+
+class PostRequest(Model):
+    title = CharField(max_length=70, default="")
+    description = TextField(max_length=128, default="", blank=True, help_text="Not needed, but give brief overview")
+    author = ForeignKey(User, on_delete=CASCADE, related_name="requests")
+    markdown = TextField(default="")
+    is_approved = BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if self.is_approved:
+            post = Post.objects.create(title=self.title, description=self.description, author=self.author,
+                                       markdown=self.markdown)
+            post.save()
+            try:
+                self.delete()
+            except:
+                pass
+        else:
+            super(PostRequest, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        db_table = "prequests"
