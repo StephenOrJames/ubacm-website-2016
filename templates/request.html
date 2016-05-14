@@ -125,13 +125,6 @@
             </form>
         </div>
     </section>
-    <script>
-        document.getElementById('file').onchange = function () {
-            var f = this.value;
-            f = f.replace(/.*[\/\\]/, '');
-            document.getElementById('current').innerText = "Upload: " + f;
-        };
-    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 {% endblock %}
