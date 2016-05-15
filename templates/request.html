@@ -96,18 +96,21 @@
                     <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-center">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" required="required" placeholder="ubit@buffalo.edu" name="email" id="email"
+                            <input type="email" required="required" placeholder="ubit@buffalo.edu" name="email"
+                                   id="email"
                                    class="form-control text-center">
                         </div>
                         <div class="form-group">
                             <label for="title">Title of Post</label>
-                            <input type="text" maxlength="70" placeholder="How to Build Something Cool" required="required" name="title" id="title"
+                            <input type="text" maxlength="70" placeholder="How to Build Something Cool"
+                                   required="required" name="title" id="title"
                                    class="form-control text-center">
                         </div>
                         <div class="form-group">
                             <label for="description">Short Description</label>
                             <textarea maxlength="128" required="required" name="description" id="description"
-                                   class="form-control text-center" placeholder="This shows you how to..." style="resize: none;"></textarea>
+                                      class="form-control text-center" placeholder="This shows you how to..."
+                                      style="resize: none;"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="file">Markdown File - Most Extensions Supported</label><br/>
@@ -119,12 +122,31 @@
                             </div>
                         </div>
                         <hr/>
-                        <button type="submit" id="requestButton" disabled="disabled" class="btn btn-primary">Submit Request</button>
+                        <button type="submit" id="requestButton" disabled="disabled" class="btn btn-primary">Submit
+                            Request
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </section>
+
+    <script>
+        document.getElementById('file').onchange = function () {
+            var f = this.value;
+            f = f.replace(/.*[\/\\]/, '');
+            var _validFileExtensions = ["markdown", "txt", "mdown", "mkdn", "md", "text", "mkd", "mdwn", "mdtxt", "mdtext"];
+            var ext = f.split('.').pop();
+            var found = $.inArray(ext.toLowerCase(), _validFileExtensions) > -1;
+            if (!found) {
+                document.getElementById("requestButton").disabled = "disabled";
+                document.getElementById('current').innerText = "Not Valid File";
+            } else {
+                document.getElementById("requestButton").disabled = "";
+                document.getElementById('current').innerText = "Upload: " + f;
+            }
+        };
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 {% endblock %}

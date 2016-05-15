@@ -1,18 +1,3 @@
-document.getElementById('file').onchange = function () {
-    var f = this.value;
-    f = f.replace(/.*[\/\\]/, '');
-    var _validFileExtensions = ["markdown", "txt", "mdown", "mkdn", "md", "text", "mkd", "mdwn", "mdtxt", "mdtext"];
-    var ext = f.split('.').pop();
-    var found = $.inArray(ext.toLowerCase(), _validFileExtensions) > -1;
-    if (!found) {
-        document.getElementById("requestButton").disabled = "disabled";
-        document.getElementById('current').innerText = "Not Valid File";
-    } else {
-        document.getElementById("requestButton").disabled = "";
-        document.getElementById('current').innerText = "Upload: " + f;
-    }
-};
-
 (function ($) {
 
 
