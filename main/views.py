@@ -2,8 +2,9 @@ import datetime
 
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 
 from contacts.models import Profile, Newsletter
 from events.models import Event
@@ -46,6 +47,22 @@ def add_user(request):
     profile.save()
     messages.success(request, "Successfully added you to the list!")
     return redirect('index')
+
+
+@csrf_exempt
+def add_user(request):
+    email = request.POST.get('email', '')
+    if User.objects.filter(email=email).first():
+        return JsonResponse({'data': 'Email already exists - ' + email})
+    ubit = str(email).split('@')[0]
+    name_list = get_name(ubit)
+    name_list = ['Previous List', 'Old Name']
+    user = User.objects.create_user(ubit, email, random_generator(), first_name=name_list[0],
+                                    last_name=name_list[1])
+    user.save()
+    profile = Profile.objects.create(attended=0, user=user, phone_number="00")
+    profile.save()
+    return JsonResponse({'data': 'Email added - ' + email})
 
 
 def contact(request):
