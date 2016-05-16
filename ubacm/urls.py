@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^$', main.index, name='index'),
     url(r'^contact$', main.contact, name='contact'),
     url(r'^add$', main.add_user, name="add_user"),
+    url(r'^add/rest$', main.add_user_rest, name="add_user_request"),
     url(r'^newsletter/(?P<letter_id>[0-9]+)$', main.show_newsletter, name='newsletter'),
     url(r'^unsubscribe/(?P<email>[a-zA-Z0-9]+)$', main.unsubscribe_email, name='unsubscribe'),
     url(r'^meeting$', main.show_meeting, name='meeting'),
