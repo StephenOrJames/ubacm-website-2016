@@ -50,13 +50,14 @@ def add_user(request):
 
 
 @csrf_exempt
-def add_user(request):
+def add_user_rest(request):
     email = request.POST.get('email', '')
     if User.objects.filter(email=email).first():
         return JsonResponse({'data': 'Email already exists - ' + email})
     ubit = str(email).split('@')[0]
     name_list = get_name(ubit)
-    name_list = ['Previous List', 'Old Name']
+    if len(ubit) < 2 or ubit is None:
+        return JsonResponse({'data': 'UBIT name is empty'})
     user = User.objects.create_user(ubit, email, random_generator(), first_name=name_list[0],
                                     last_name=name_list[1])
     user.save()

@@ -8,14 +8,18 @@ def get_name(ubit):
     html_string = urlopen(url).read()
     blab = [None]
 
-    search_results = BeautifulSoup(html_string).find(attrs={'class': 'content_list clearsub search_results directory'})
+    try:
+        search_results = BeautifulSoup(html_string).find(attrs={'class': 'content_list clearsub search_results directory'})
 
-    for hit in search_results.find_all('a'):
-        if "Additional" not in hit.text and "vCard" not in hit.text:
-            blab = [hit.text.split(' ')[0], hit.text.split(' ')[-1]]
-    name = []
-    for each in blab:
-        name.append(each.strip(' \t\n\r'))
-    print(name)
-
-    return name
+        for hit in search_results.find_all('a'):
+            if "Additional" not in hit.text and "vCard" not in hit.text:
+                blab = [hit.text.split(' ')[0], hit.text.split(' ')[-1]]
+        name = []
+        for each in blab:
+            name.append(each.strip(' \t\n\r'))
+        print(name)
+        if len(name) < 2:
+            name = ['Unknown', 'Unknown']
+        return name
+    except:
+        return ['Unknown', 'Unknown']
