@@ -11,6 +11,7 @@ class ContactInline(admin.StackedInline):
 
 
 class UserDisplay(UserAdmin):
+    list_display = ('last_name', 'first_name', 'email', 'is_staff', 'date_joined')
     inlines = (ContactInline,)
 
 admin.site.unregister(User),
