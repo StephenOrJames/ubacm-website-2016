@@ -10,14 +10,22 @@
     <meta name="generator" content="Mobirise v2.6.1, mobirise.com">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static 'main/images/acm_logo.png' %}" type="image/x-icon">
+    <meta name="keywords" content="ACM, University at Buffalo, Computer, Software, Engineering, Monkeys">
+    {% if post %}
+    <meta name="description"
+          content="{{ post.description }}">
+    <meta property="og:title" content="UB ACM - {{ post.title }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://ubacm.org/blog/post/{{ post.identity }}"/>
+    <meta property="og:image" content="http://ubacm.org/static/main/images/acm_logo.png"/>
+    {% else %}
     <meta name="description"
           content="A student community around computer science and software engineering at the University at Buffalo">
-    <meta name="keywords" content="ACM, University at Buffalo, Computer, Software, Engineering, Monkeys">
-
     <meta property="og:title" content="UB ACM"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="http://www.ubacm.org"/>
     <meta property="og:image" content="http://ubacm.org/static/main/images/acm_logo.png"/>
+    {% endif %}
 
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:700,400&amp;subset=cyrillic,latin,greek,vietnamese">
