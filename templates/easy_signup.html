@@ -1,0 +1,132 @@
+{% extends 'layout.html' %}
+{% block content %}
+    {% load static from staticfiles %}
+    <link href="{% static 'pagedown/demo/browser/demo.css' %}" type="text/css" media="all" rel="stylesheet"/>
+    <link href="{% static 'admin/css/pagedown.css' %}" type="text/css" media="all" rel="stylesheet"/>
+    <script type="text/javascript" src="{% static 'pagedown/Markdown.Converter.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pagedown-extra/pagedown/Markdown.Converter.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pagedown/Markdown.Sanitizer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pagedown/Markdown.Editor.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pagedown-extra/Markdown.Extra.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pagedown_init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/pagedown.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'main/mobirise/css/markdown.css' %}"/>
+    <style>code {
+        white-space: pre;
+        background-color: rgba(122, 122, 122, 0.3);
+        color: #000000;
+    }
+
+    html {
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        letter-spacing: 2px;
+    }
+
+    p {
+        font-size: 1.2em !important;
+    }
+
+    .fileUpload {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+    }
+
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    </style>
+    {% load markdown_deux_tags %}
+    <section class="content-2 simple col-1 col-undefined mbr-parallax-background mbr-after-navbar" id="content5-77"
+             style="background-image: url({% static 'main/images/iphone-6-458151-1920-1920x1285-67.jpg' %});">
+        <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(0, 0, 0);"></div>
+        <div class="container">
+            <div class="row">
+                <div>
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>Orientation Signup Form</h3>
+                            <div><p>Welcome to our club, welcome to our club!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mbr-section" style="padding: 5px;" id="header3-78">
+        <div class="mbr-section__container container mbr-section__container--first" style="padding: 15px">
+            <form method="post" action="{% url 'easy_signup_post' %}">
+                {% csrf_token %}
+                <div class="mbr-header mbr-header--wysiwyg row">
+                    <div class="col-sm-8 col-sm-offset-2 well">
+                        <h3 class="mbr-header__text">Our Welcome to You</h3>
+                        <hr/>
+                        <p>We would like to officially welcome you to our club! We love everything tech related,
+                        from computers, to robots, to the cloud! We are a student-run group determined to help build
+                        and mold the creativity and maturity of anyone interested in electronics or technology, from
+                        all disciplines and skillsets. Some things we have planned for the upcoming year are: </p>
+                        <ul>
+                            <li>UB Hacking 2016 - A fun Hackathon to build whatever you can in 24 hours!</li>
+                            <li>Python workshop - For beginners and intermediate programmers alike</li>
+                            <li>Golang workshop - For people who are new to the language.</li>
+                            <li>Resume workshops - For technical-minded people trying to write a resume.</li>
+                            <li>Interview workshops - For technical-minded people trying to pass an interview.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mbr-header mbr-header--wysiwyg row">
+                    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-center">
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" required="required" placeholder="obama@whitehouse.gov" name="email"
+                                   id="email"
+                                   class="form-control text-center">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label for="title">First Name</label>
+                                    <input type="text" maxlength="70" placeholder="Obama"
+                                           required="required" name="first" id="title"
+                                           class="form-control text-center">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="title">Last Name</label>
+                                    <input type="text" maxlength="70" placeholder="Obama"
+                                            required="required" name="last" id="title"
+                                            class="form-control text-center">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Something You Like or Would Like to Learn </label>
+                            <textarea maxlength="128" required="required" name="description" id="description" rows="3"
+                                      class="form-control text-center" placeholder="I would love to be the president..."
+                                      style="resize: none;"></textarea>
+                        </div>
+                        <hr/>
+                        <button type="submit" id="requestButton" class="btn btn-primary">
+                            Signup!
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+{% endblock %}

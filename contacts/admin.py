@@ -1,5 +1,5 @@
 from django.contrib import admin
-from contacts.models import Newsletter, InfoWidget
+from contacts.models import Newsletter, InfoWidget, IdeaMachine
 
 
 class WidgetAdmin(admin.StackedInline):
@@ -25,3 +25,10 @@ class NewsLetterModel(admin.ModelAdmin):
         form.instance.save() # form.instance is the parent
 
 admin.site.register(Newsletter, NewsLetterModel)
+
+
+class IdeaMachineAdmin(admin.ModelAdmin):
+    list_display = ('text',)
+    search_fields = ('text',)
+
+admin.site.register(IdeaMachine, IdeaMachineAdmin)

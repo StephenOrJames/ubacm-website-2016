@@ -64,3 +64,12 @@ class InfoWidget(Model):
         verbose_name = "Newsletter Section"
         verbose_name_plural = "Text Widgets"
 
+
+class IdeaMachine(Model):
+    text = TextField(default="")
+
+    class Meta:
+        db_table = "ideas"
+        verbose_name = "Idea Machine"
+        verbose_name_plural = "Idea Machines"
+

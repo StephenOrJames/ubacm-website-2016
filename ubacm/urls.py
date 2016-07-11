@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from main import views as main
+from contacts.views import easy_signup, easy_signup_post
 
 urlpatterns = [
     url(r'^$', main.index, name='index'),
@@ -29,6 +30,8 @@ urlpatterns = [
     url(r'^unsubscribe/(?P<email>[a-zA-Z0-9]+)$', main.unsubscribe_email, name='unsubscribe'),
     url(r'^meeting$', main.show_meeting, name='meeting'),
     url(r'^meeting/response$', main.add_response, name='add_response'),
+    url(r'^orientation$', easy_signup, name="easy_signup"),
+    url(r'^orientation/save$', easy_signup_post, name="easy_signup_post"),
 
     url(r'^blog/', include('blog.urls', namespace="blog")),
 
