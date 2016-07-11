@@ -7,8 +7,6 @@ from contacts.models import IdeaMachine
 from lib import random_generator
 
 
-@login_required
-@user_passes_test(lambda u: u.is_superuser)
 def easy_signup(request):
     """
     This is accessible only by Admins
@@ -18,8 +16,6 @@ def easy_signup(request):
     return render(request, 'easy_signup.html')
 
 
-@login_required
-@user_passes_test(lambda u: u.is_superuser)
 def easy_signup_post(request):
     if request.method != 'POST':
         return redirect('index')
