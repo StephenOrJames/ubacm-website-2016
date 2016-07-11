@@ -55,7 +55,10 @@ def add_user_rest(request):
     if User.objects.filter(email=email).first():
         return JsonResponse({'data': 'Email already exists - ' + email})
     ubit = str(email).split('@')[0]
-    name_list = get_name(ubit)
+    try:
+        name_list = get_name(ubit)
+    except:
+        name_list = ["Unknown", "Unknown"]
     if len(ubit) < 2 or ubit is None:
         return JsonResponse({'data': 'UBIT name is empty'})
     user = User.objects.create_user(ubit, email, random_generator(), first_name=name_list[0],
