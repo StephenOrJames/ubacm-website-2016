@@ -41,7 +41,8 @@ DEBUG = ENVIROMENT['debug']
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = ['*']
+    SECURE_SSL_REDIRECT = True
+    ALLOWED_HOSTS = ['162.243.120.162', 'ubacm.org', 'www.ubacm.org']
 
 GRAPPELLI_ADMIN_TITLE = "UB ACM"
 
@@ -103,7 +104,7 @@ STATICFILES_FINDERS = (
 WSGI_APPLICATION = 'ubacm.wsgi.application'
 
 EMAIL_BACKEND = "sgbackend.SendGridBackend"
-SENDGRID_API_KEY = "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"
+SENDGRID_API_KEY = "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"
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
