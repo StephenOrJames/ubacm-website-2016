@@ -4,7 +4,7 @@ from contacts.models import Newsletter, InfoWidget, IdeaMachine
 
 class WidgetAdmin(admin.StackedInline):
     model = InfoWidget
-    extra = 3
+    extra = 0
 
 
 class NewsLetterModel(admin.ModelAdmin):
@@ -18,11 +18,10 @@ class NewsLetterModel(admin.ModelAdmin):
         if not obj.pk: # call super method if object has no primary key
             super(NewsLetterModel, self).save_model(request, obj, form, change)
         else:
-            pass # don't actually save the parent instance
+            super(NewsLetterModel, self).save_model(request, obj, form, change)
 
     def save_formset(self, request, form, formset, change):
         formset.save() # this will save the children
-        form.instance.save() # form.instance is the parent
 
 admin.site.register(Newsletter, NewsLetterModel)
 

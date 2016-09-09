@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from contacts.models import Profile, Newsletter
-from events.models import Event
+from events.models import Event, Meeting, Response
 from lib import random_generator
 from lib.ubitscrap import get_name
 from main.models import ContactForm, EBoard, BackgroundImage
@@ -134,6 +134,7 @@ def show_meeting(request):
 
 def add_response(request):
     from events.models import Meeting
+    from events.models import Response
     email = request.POST.get('name', '')
     meeting = Meeting.objects.all().reverse()[0]
     extra = request.POST.get('extra_question', '')
@@ -148,10 +149,6 @@ def add_response(request):
         messages.error(request, "Email is too short")
         return redirect('meeting')
 
-    # See if they already submitted
-    if meeting.responses.filter(user=User.objects.filter(email=email).first()).first():
-        messages.error(request, "That email is already used for a submission")
-        return redirect('meeting')
     if not User.objects.filter(email=email).first():
         ubit = str(email).split('@')[0]
         name_list = get_name(ubit)
@@ -165,15 +162,19 @@ def add_response(request):
         profile.save()
         user.profile.save()
     else:
-        from events.models import Response
         user = User.objects.filter(email=email).first()
+
+    # See if they already submitted
+    if meeting.responses.filter(user=User.objects.filter(email=email).first()).first():
+        messages.error(request, "That email is already used for a submission")
+        return redirect('meeting')
     meeting_response = Response.objects.create(user=user, meeting=meeting, extra_question_answer=extra, comments=comments)
     meeting_response.save()
     user.profile.attended += 1
     user.save()
     user.profile.save()
     messages.success(request, 'Thank you for your submission!')
-    return redirect('index')
+    return redirect('meeting')
 
 
 def handler404(request):

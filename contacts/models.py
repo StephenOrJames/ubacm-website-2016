@@ -40,20 +40,25 @@ class Newsletter(Model):
         plaintext = get_template('newsletter.txt')  # Text form
         htmly     = get_template('newsletter.html')  # HTML form
         for contact in User.objects.all():  # Send it to everyone
-            if contact.profile.send_email:
-                d = Context({'widgets': self.widgets.all(), 'newsletter': self, 'contact': contact})
-                text_content = plaintext.render(d)
-                html_content = htmly.render(d)
-                subject, from_email, to = self.subject, 'ubsa-acm@buffalo.edu', contact.email
-                msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-                msg.attach_alternative(html_content, "text/html")
-                msg.send()
+            try:
+                can_send = contact.profile.send_email and len(self.widgets.all()) > 0
+                if can_send:
+                    print("Emailing %s" % contact.email)
+                    d = Context({'widgets': self.widgets.all(), 'newsletter': self, 'contact': contact})
+                    text_content = plaintext.render(d)
+                    html_content = htmly.render(d)
+                    subject, from_email, to = self.subject, 'ubsa-acm@buffalo.edu', contact.email
+                    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                    msg.attach_alternative(html_content, "text/html")
+                    msg.send()
+            except:
+                print("Couldn't send email to %s." % contact.email)
         super(Newsletter, self).save(*args, **kwargs)
 
 
 class InfoWidget(Model):
     title = CharField(max_length=32, default="")
-    text = TextField(max_length=256, default="")
+    text = TextField(default="")
     newsletter = ForeignKey(Newsletter, related_name='widgets')
 
     def __str__(self):

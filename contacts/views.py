@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
-from contacts.models import IdeaMachine
+from contacts.models import IdeaMachine, Profile
 from lib import random_generator
 
 

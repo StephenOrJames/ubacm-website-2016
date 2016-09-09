@@ -15,8 +15,8 @@ Open in your browser (http://ubacm.org/newsletter/{{newsletter.id}})
 {{ widget.text }}
 {% endfor %}
 
-Sent by Edwin Santos
-Secretary
+Sent by Daniel Starner
+Vice President
 UB ACM
 {% if contact %} Unsubscribe (http://ubacm.org/unsubscribe/{{contact.email}}) {% else %} Contact ACM to unsubscribe ({% url 'index' %}) {% endif %}
 https://www.facebook.com/groups/ubacm
