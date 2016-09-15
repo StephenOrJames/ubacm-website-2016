@@ -20,7 +20,7 @@ def index(request):
     if len(events) < 4:
         events = Event.objects.order_by('-date').all()[:4]
     eboard = EBoard.objects.filter(id=len(EBoard.objects.all())).first()
-    background = BackgroundImage.objects.all()[0]
+    background = BackgroundImage.objects.first()
     return render(request, 'index.html',
                   {'home': True, 'eboard': eboard, 'events': events.reverse(), 'background': background})
 
