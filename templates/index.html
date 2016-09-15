@@ -54,10 +54,13 @@
         </div>
     </section>
     <div class="clearfix"></div>
+
+    {% if events %}
     <section class="content-2 col-4" id="events" style="background-color: rgb(28, 73, 110);">
         <div class="container">
             <div class="row">
-                {% for event in events %}
+                <h3 class="mbr-header__text text-center">EVENTS</h3>
+                {% for event in events|slice:":4" %}
                     <div>
                         <div class="thumbnail">
                             <div class="image">
@@ -81,16 +84,25 @@
                         </div>
                     </div>
                 {% endfor %}
+                {% if events|length > 4 %}
+                    <p class="row">
+                        <a href="{% url "events:index" %}" target="_blank" class="btn btn-default btn-inverse btn-lg"
+                           style="border-color: #fff; color: #fff;">
+                            SEE MORE EVENTS
+                        </a>
+                    </p>
+                {% endif %}
             </div>
         </div>
     </section>
+    {% endif %}
 
     <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="social-buttons"
              style="background-color: rgb(240, 240, 240);">
         <div class="mbr-section__container container">
             <div class="mbr-header mbr-header--inline row">
                 <div class="col-sm-7">
-                    <h3 class="mbr-header__text">FOLLOW US ON SOCIAL MEDIA</h3>
+                    <h3 class="mbr-header__text text-right">FOLLOW US ON SOCIAL MEDIA</h3>
                 </div>
                 <div class="mbr-social-icons mbr-social-icons--style-1 col-sm-5">
                     <a class="mbr-social-icons__icon socicon-bg-twitter" title="Twitter" target="_blank"

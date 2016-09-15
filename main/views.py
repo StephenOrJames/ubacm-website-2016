@@ -15,10 +15,10 @@ from main.models import ContactForm, EBoard, BackgroundImage
 
 def index(request):
     current_date = datetime.date.today().strftime("%Y-%m-%d")
-    one_month_away = (datetime.date.today() + datetime.timedelta(days=62)).strftime("%Y-%m-%d")
-    events = Event.objects.filter(date__range=[current_date, one_month_away]).order_by('-date').all()[:4]
+    two_months_away = (datetime.date.today() + datetime.timedelta(days=62)).strftime("%Y-%m-%d")
+    events = Event.objects.filter(date__range=[current_date, two_months_away]).order_by('-date').all()
     if len(events) < 4:
-        events = Event.objects.order_by('-date').all()[:4]
+        events = Event.objects.order_by('-date').all()
     eboard = EBoard.objects.filter(id=len(EBoard.objects.all())).first()
     background = BackgroundImage.objects.first()
     return render(request, 'index.html',

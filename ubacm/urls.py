@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^join/save$', easy_signup_post, name="easy_signup_post"),
 
     url(r'^blog/', include('blog.urls', namespace="blog")),
+    url(r'^events/', include('events.urls', namespace="events")),
 
     # Admin Pages
     url(r'^grappelli/', include('grappelli.urls')),
